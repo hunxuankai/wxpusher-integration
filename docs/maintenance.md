@@ -1,5 +1,19 @@
 # 维护与发布
 
+## 2026-10-07 正式发行记录（1.0.3）
+
+- 源码已推送到公开仓库，默认分支为 `main`；GitHub 已识别 MIT 许可证。
+- Release：<https://github.com/hunxuankai/wxpusher-integration/releases/tag/v1.0.3>，已公开且标记为最新正式版本。
+- 标签 `v1.0.3` 固定在提交 `62d3591b9db27a757aa5c3ed9203944b169326c4`；
+  后续仅补充此维护记录，不改动该标签或发行包。
+- 发行提交的 [GitHub Actions 检查](https://github.com/hunxuankai/wxpusher-integration/actions/runs/37506127874)
+  已通过：Linux、Windows 上的结构、许可一致性和临时目录安装检查均成功。
+- 已上传 ZIP、SHA-256 和提交记录三个附件，并通过无需登录的公开 URL 重新下载；
+  三个附件均与本地原件逐字节一致，ZIP 中 8 个文件也与标签提交中的内容一致。
+- `wxpusher-integration-1.0.3.zip` 大小为 28180 字节，SHA-256 为
+  `b76a033311eb78c67e6c8d34a89e4c85eb594a8f952e95842f8c9de61666d99d`。
+- 本次正式发布未改变 API 事实、核验日期或授权语义，也未执行真实 API 集成测试。
+
 ## 2026-10-07 整理记录
 
 - 以现有安装版 1.0.2 建立独立源码仓库，保留 skill 的 7 个文件和原有核验日期。
