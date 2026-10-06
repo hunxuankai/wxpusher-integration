@@ -24,6 +24,8 @@
 - 独立只读审阅未发现阻断问题。GitHub Actions 尚未在线运行，Linux 安装尚未实测；
   本次没有重新核验 API 或执行真实 API 集成测试，其他 skill 平台也未进行发布验证。
 - 发行附件置于被 Git 忽略的 `dist/`；其 Git 来源以随包的 `.commit.txt` 为准。
+- 已复现并处理 Windows 子目录归档的换行转换：归档时显式使用 `core.autocrlf=false`，
+  以保持包内文件与提交中的 Git blob 逐字节一致。
 
 ## 每次修改
 
@@ -108,7 +110,7 @@ foreach ($outputPath in @($archivePath, $checksumPath, $commitPath)) {
     if (Test-Path -LiteralPath $outputPath) { throw "发行文件已存在，请先审查：$outputPath" }
 }
 New-Item -ItemType Directory -Path 'dist' -Force | Out-Null
-git archive --format=zip --prefix=wxpusher-integration/ --output=$archivePath "${releaseCommit}:skills/wxpusher-integration"
+git -c core.autocrlf=false archive --format=zip --prefix=wxpusher-integration/ --output=$archivePath "${releaseCommit}:skills/wxpusher-integration"
 if ($LASTEXITCODE -ne 0) { throw '归档失败。' }
 $archiveHash = (Get-FileHash -LiteralPath $archivePath -Algorithm SHA256).Hash.ToLowerInvariant()
 "$archiveHash  $releaseBase.zip" | Set-Content -LiteralPath $checksumPath -Encoding ascii
@@ -117,6 +119,7 @@ $releaseCommit | Set-Content -LiteralPath $commitPath -Encoding ascii
 
 解压检查 ZIP 中恰好有一层 `wxpusher-integration/`，其下直接是 `SKILL.md`、`LICENSE.md`、
 `references/` 和 `agents/`；运行检查器验证解压目录，并核对内容与发行提交一致。
+归档的 `-c core.autocrlf=false` 只对这条命令生效，避免子目录归档受本机换行配置影响；不会修改 Git 配置。
 如生成后仍需修改源码，应使用新提交重新生成候选；已发布版本不能悄悄替换内容。
 
 ### 3. 正式公开代码与版本
