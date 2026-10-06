@@ -3,7 +3,7 @@
 用于接入和排查 WxPusher 通知的 Agent Skill，覆盖标准推送、UID/Topic、SPT、响应判断、配置和故障处理。
 
 当前 skill 版本为 **1.0.3**，采用 [MIT 许可证](LICENSE)。API 资料最近核验于 **2026-10-06**。
-本次发布准备仅补充分发材料，不代表重新核验了线上 API。
+v1.0.3 补充分发材料，不代表重新核验了线上 API。
 
 源码仓库：<https://github.com/hunxuankai/wxpusher-integration>。
 本项目独立维护，不是 WxPusher 官方项目。
@@ -20,8 +20,6 @@ Skill 本体由 Markdown/YAML 文件组成，没有 Python、Node.js 或 PowerSh
 ## 安装
 
 ### 下载发行包
-
-v1.0.3 当前处于发布准备阶段；正式发布后可使用以下下载方式。
 
 在 [Releases](https://github.com/hunxuankai/wxpusher-integration/releases) 下载
 `wxpusher-integration-1.0.3.zip`，并可用同名 `.sha256` 文件核对校验值。
