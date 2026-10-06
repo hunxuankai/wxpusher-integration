@@ -1,8 +1,9 @@
 ---
 name: wxpusher-integration
 description: Use when（在以下情况使用）：项目明确选择 WxPusher，或需要通过 appToken、UID、Topic、SPT 接入 WxPusher API 通知；未指定 provider（提供商）的 generic notifications 或已指定其他渠道时不要触发。
+license: MIT
 metadata:
-  version: "1.0.2"
+  version: "1.0.3"
   docs-verified: "2026-10-06"
 ---
 
