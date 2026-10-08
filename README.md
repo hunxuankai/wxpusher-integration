@@ -3,7 +3,8 @@
 用于接入和排查 WxPusher 通知的 Agent Skill，覆盖标准推送、UID/Topic、SPT、响应判断、配置和故障处理。
 
 当前源码版本为 **1.0.4**，采用 [MIT 许可证](LICENSE)。API 资料最近核验于 **2026-10-08**。
-本次更新优化触发与中文入口，并补齐官方微信渠道说明；1.0.4 尚未发布，下方已有发行包仍为 1.0.3。
+本次更新优化触发与中文入口，并补齐官方微信渠道说明；1.0.4 已同步到 GitHub 安装源，
+并提交 SkillHub 审核。下方 GitHub Release 发行包仍为 1.0.3。
 
 源码仓库：<https://github.com/hunxuankai/wxpusher-integration>。
 本项目独立维护，不是 WxPusher 官方项目。
