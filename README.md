@@ -19,6 +19,17 @@ Skill 本体由 Markdown/YAML 文件组成，没有 Python、Node.js 或 PowerSh
 
 ## 安装
 
+### 通过 skills.sh 安装
+
+已收录于 [skills.sh](https://skills.sh/hunxuankai/wxpusher-integration/wxpusher-integration)：
+
+```sh
+npx skills add hunxuankai/wxpusher-integration --skill wxpusher-integration
+```
+
+CLI 会从公开 GitHub 仓库发现 `skills/wxpusher-integration/`，并按选择的宿主安装。
+该命令跟随仓库当前内容；需要固定 v1.0.3 时，使用下方发行包。
+
 ### 下载发行包
 
 在 [Releases](https://github.com/hunxuankai/wxpusher-integration/releases) 下载
@@ -110,7 +121,8 @@ GitHub Actions 在 Linux 和 Windows 上运行结构检查、许可副本一致�
 ## 公开发布
 
 - 该仓库维护一个 skill；向平台填写源码子目录时使用 `skills/wxpusher-integration`。
-- SkillHub、SkillStore 等平台的提交方式、目录结构和元数据要求需要分别核实；目前未执行平台发布验证。
+- skills.sh 已完成收录和 CLI 安装验证，见 [v1.0.3 收录记录](docs/releases/skills-sh-v1.0.3.md)。
+  其他平台的提交方式、目录结构和元数据要求需要分别核实，不能由此推定。
 - 仓库和独立 skill 包采用 MIT，版权署名为 `Copyright (c) 2026 WxPusher`。
   分发时保留完整许可文本；根目录 `LICENSE` 与 skill 内 `LICENSE.md` 保持一致。
 - [v1.0.3 发行说明](docs/releases/v1.0.3.md)可用作 GitHub Release 正文；提交、打包和发布步骤见[维护说明](docs/maintenance.md#github-发行步骤)。
