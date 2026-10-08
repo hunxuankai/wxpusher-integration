@@ -2,8 +2,8 @@
 
 用于接入和排查 WxPusher 通知的 Agent Skill，覆盖标准推送、UID/Topic、SPT、响应判断、配置和故障处理。
 
-当前 skill 版本为 **1.0.3**，采用 [MIT 许可证](LICENSE)。API 资料最近核验于 **2026-10-06**。
-v1.0.3 补充分发材料，不代表重新核验了线上 API。
+当前源码版本为 **1.0.4**，采用 [MIT 许可证](LICENSE)。API 资料最近核验于 **2026-10-08**。
+本次更新优化触发与中文入口，并补齐官方微信渠道说明；1.0.4 尚未发布，下方已有发行包仍为 1.0.3。
 
 源码仓库：<https://github.com/hunxuankai/wxpusher-integration>。
 本项目独立维护，不是 WxPusher 官方项目。
@@ -13,6 +13,18 @@ v1.0.3 补充分发材料，不代表重新核验了线上 API。
 - 为脚本、后端服务、定时任务和 CI 接入已选定的 WxPusher 通知渠道。
 - 处理标准推送、UID/Topic、SPT、响应判断、凭据配置和故障排查。
 - 用户只说“加微信通知”、尚未选择服务商时，不自动选用 WxPusher。
+- 普通 UID 查询、Kafka Topic 等通用术语不会单独触发本 skill。
+
+## 是否支持微信推送
+
+**支持，官方当前明确支持微信 ClawBot（iLink）文本通知。** 用户需在 WxPusher App
+“我的 → 推送渠道”绑定并启用微信 ClawBot，在微信侧激活后接收；每次激活后
+24 小时内最多接收 10 条，用尽后需回复任意内容再次激活。该渠道当前不支持上行消息。
+
+开发者仍使用原有发送 API；官方当前主推独立手机/桌面客户端，微信是补充渠道。
+不能将此能力理解为可以向任意微信好友或微信群发送消息。详见
+[官方正文](https://wxpusher.zjiecode.com/docs/README.md)及
+[接收渠道与微信支持](skills/wxpusher-integration/references/api.md#接收渠道与微信支持)。
 
 Skill 本体由 Markdown/YAML 文件组成，没有 Python、Node.js 或 PowerShell 运行时依赖。
 执行集成时使用代理宿主已有的文件、HTTP 和开发工具；真实发送需要使用者自己的 WxPusher 配置。
@@ -83,9 +95,15 @@ skills/wxpusher-integration/   唯一 skill 源码，也是安装内容的根目
 
 完整内容见 [SKILL.md](skills/wxpusher-integration/SKILL.md)。
 
-例如向代理提出：
+可以直接向代理提出：
 
-> 使用 wxpusher-integration，为现有脚本接入 WxPusher 通知；缺少凭据时使用环境变量占位，先完成离线验证。
+| 需求 | 请求示例 |
+| --- | --- |
+| 新增通知 | 给 Python 定时任务接入 WxPusher，失败时通知我；缺少凭据时使用环境变量占位，先做离线验证。 |
+| 微信收不到 | 排查 WxPusher 返回成功但微信没有收到消息的问题。 |
+| 个人脚本 | 使用已有的 WxPusher SPT 配置接入个人脚本通知。 |
+
+需要明确指定 skill 时，可以在请求前加“使用 wxpusher-integration”。
 
 公开示例只使用占位符；真实凭据通过使用者自己的配置方式提供。
 开发验证默认不发送真实消息；正式运行遵循使用者已有的明确授权。
