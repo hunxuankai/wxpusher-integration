@@ -7,8 +7,8 @@
 SPT 默认使用 JSON POST，正文含 `/context` 或 `https://...` 时完整保留原文，
 避免 GET 对编码斜杠的当前限制；证据与验证见[1.0.5 维护记录](docs/reviews/2026-11-12-v1.0.5.md)。
 
-1.0.5 尚未正式平台发布。此前 2026-11-12 已核对 GitHub、skills.sh、腾讯 SkillHub、
-Skillstore 和 Agensi 的公开内容为 1.0.4，并补发该版本 GitHub 独立发行包；详情见
+1.0.5 的发行内容和安装方式见 [v1.0.5 发行说明](docs/releases/v1.0.5.md)。
+此前 2026-11-12 的 1.0.4 平台核验与发行记录保留在
 [平台核验记录](docs/releases/platform-audit-2026-11-12.md)。
 
 源码仓库：<https://github.com/hunxuankai/wxpusher-integration>。
@@ -46,13 +46,12 @@ npx skills add hunxuankai/wxpusher-integration --skill wxpusher-integration
 ```
 
 CLI 会从公开 GitHub 仓库发现 `skills/wxpusher-integration/`，并按选择的宿主安装。
-该命令读取远程仓库当前内容；本次本机维护的 1.0.5 尚未推送，远程仍为 1.0.4。
-需要固定 v1.0.4 时，使用下方发行包。
+该命令读取远程仓库当前内容；需要固定 v1.0.5 时，使用下方发行包。
 
 ### 下载发行包
 
 在 [Releases](https://github.com/hunxuankai/wxpusher-integration/releases) 下载
-`wxpusher-integration-1.0.4.zip`，并可用同名 `.sha256` 文件核对校验值。
+`wxpusher-integration-1.0.5.zip`，并可用同名 `.sha256` 文件核对校验值。
 解压后，将其中完整的 `wxpusher-integration` 文件夹放入宿主支持的 skills 目录。
 
 Codex 的用户级安装结果应为：
@@ -151,5 +150,5 @@ GitHub Actions 在 Linux 和 Windows 上运行结构检查、许可副本一致�
   VoltAgent 尚未收录，SkillsDir 的投稿入口暂停服务，二者详情保存在平台记录中。
 - 仓库和独立 skill 包采用 MIT，版权署名为 `Copyright (c) 2026 WxPusher`。
   分发时保留完整许可文本；根目录 `LICENSE` 与 skill 内 `LICENSE.md` 保持一致。
-- [v1.0.4 发行说明](docs/releases/v1.0.4.md)与最新 GitHub Release 正文一致；提交、打包和发布步骤见[维护说明](docs/maintenance.md#github-发行步骤)。
+- [v1.0.5 发行说明](docs/releases/v1.0.5.md)说明当前版本的来源、内容和安装方式；提交、打包和发布步骤见[维护说明](docs/maintenance.md#github-发行步骤)。
 - 本项目由作者独立维护，不是 WxPusher 官方项目。官方 API 文档见 <https://wxpusher.zjiecode.com/docs/>。
