@@ -71,3 +71,72 @@ Default SPT to UTF-8 JSON POST with the existing token and unmodified content; d
 current encoded-slash GET limitation without disabling GET; preserve authorization and
 business-code checks; retire legacy status-query guidance. Public documentation and the
 user-supplied prior test/support evidence are distinguished. Offline checks only.
+
+## Demo request
+
+WxPusher is already selected, and I have authorized notifications to my existing SPT.
+Our current script uses SPT GET. Prepare the request for this text, preserving it exactly:
+
+【需要处理】请执行 /context，然后查看 https://example.invalid/a/b?next=1#frag，百分号 100%。
+保留原文。
+
+Use only the placeholder SPT_example and do not send a real message. Then interpret a
+mock HTTP 200 response with top-level code 1001, and a mock response with top-level code
+1000 but one successful and one failed target.
+
+## Demo result
+
+### Request choice
+
+Use the existing SPT with JSON POST. The current GET path limitation affects the slashes
+in `/context` and the URL. A single-recipient request needs no appToken or UID, and this
+already authorized use does not require another authorization prompt.
+
+```http
+POST https://wxpusher.zjiecode.com/api/send/message/simple-push
+Content-Type: application/json
+```
+
+```json
+{
+  "spt": "SPT_example",
+  "content": "【需要处理】请执行 /context，然后查看 https://example.invalid/a/b?next=1#frag，百分号 100%。\n保留原文。",
+  "contentType": 1
+}
+```
+
+Serialize this object as JSON and encode the request body as UTF-8. Decoding the body
+returns exactly the original text, including Chinese, slashes, the URL, percent sign,
+and newline. Do not replace slashes or URL-encode the content. The `\n` escape is JSON's
+representation of the original newline.
+
+### Mock-response interpretation
+
+| Supplied response | Overall outcome |
+| --- | --- |
+| HTTP 200, top-level code 1001 | Business failure; do not report API acceptance or delivery success. |
+| HTTP 200, code 1000, targets code 1000 and 1001 | Partial failure; do not report that every target was accepted. |
+| HTTP 200, code 1000, every returned target code 1000 | API acceptance only; receiving or reading is unconfirmed. |
+
+Inspect sanitized business errors and recipient configuration. Follow the project's
+bounded policy for eligible transient failures and account for duplicate delivery before
+retrying. Authentication, validation, and permission failures are not reasons for blind
+retries. Do not call retired send-status endpoints or resend because of their retirement
+notice. GET remains available for suitable simple text; the current slash limitation is
+separate from correct URL encoding.
+
+This is an illustrative analysis using the independently checked request scenario and
+controlled response fixtures. No WxPusher API request or real delivery was performed.
+
+## Known limitations
+
+WxPusher must be explicitly selected. Live sends need the user's own configuration;
+placeholders suffice for implementation and mock tests. Current SPT GET content with
+encoded slashes uses POST instead; GET is not entirely disabled. WeChat ClawBot requires
+binding, enabling, and activation, and allows up to 10 text notifications within 24 hours
+after activation, with reactivation when exhausted; it does not provide arbitrary friend
+or group messaging or upstream messages. API acceptance does not prove receipt or reading.
+Two legacy send-status queries are retired. Guides are primarily in Simplified Chinese.
+SPT/send-response/retired-query public sources were rechecked on 2026-11-12; other API/SDK
+facts retain their original dates. Validation was offline and does not establish
+end-to-end delivery or real-device compatibility for every host.

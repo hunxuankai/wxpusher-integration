@@ -145,7 +145,8 @@ GitHub Actions 在 Linux 和 Windows 上运行结构检查、许可副本一致�
 ## 公开发布
 
 - 该仓库维护一个 skill；向平台填写源码子目录时使用 `skills/wxpusher-integration`。
-- 当前平台版本、下载内容和页面介绍的核验见[2026-11-12 平台记录](docs/releases/platform-audit-2026-11-12.md)。
+- 当前 1.0.5 的平台版本、下载内容、页面介绍和未完成项见[1.0.5 平台发布记录](docs/releases/platforms-v1.0.5.md)。
+  此前 1.0.4 的核验保留在[历史平台记录](docs/releases/platform-audit-2026-11-12.md)。
   skills.sh 的首次收录见 [v1.0.3 收录记录](docs/releases/skills-sh-v1.0.3.md)。
   VoltAgent 尚未收录，SkillsDir 的投稿入口暂停服务，二者详情保存在平台记录中。
 - 仓库和独立 skill 包采用 MIT，版权署名为 `Copyright (c) 2026 WxPusher`。
