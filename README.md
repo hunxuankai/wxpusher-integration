@@ -2,10 +2,14 @@
 
 用于接入和排查 WxPusher 通知的 Agent Skill，覆盖标准推送、UID/Topic、SPT、响应判断、配置和故障处理。
 
-当前源码版本为 **1.0.4**，采用 [MIT 许可证](LICENSE)。API 资料最近核验于 **2026-10-08**。
-本次更新优化触发与中文入口，并补齐官方微信渠道说明。2026-11-12 已核对 GitHub、
-skills.sh、腾讯 SkillHub、Skillstore 和 Agensi 的公开内容为 1.0.4，并补发 GitHub
-独立发行包；详情见[平台核验记录](docs/releases/platform-audit-2026-11-12.md)。
+当前源码版本为 **1.0.5**，采用 [MIT 许可证](LICENSE)。本次于 **2026-11-12**
+重新核验 SPT 文档、发送响应和旧状态查询停用说明；其余 API/SDK 资料保留原核验日期。
+SPT 默认使用 JSON POST，正文含 `/context` 或 `https://...` 时完整保留原文，
+避免 GET 对编码斜杠的当前限制；证据与验证见[1.0.5 维护记录](docs/reviews/2026-11-12-v1.0.5.md)。
+
+1.0.5 尚未正式平台发布。此前 2026-11-12 已核对 GitHub、skills.sh、腾讯 SkillHub、
+Skillstore 和 Agensi 的公开内容为 1.0.4，并补发该版本 GitHub 独立发行包；详情见
+[平台核验记录](docs/releases/platform-audit-2026-11-12.md)。
 
 源码仓库：<https://github.com/hunxuankai/wxpusher-integration>。
 本项目独立维护，不是 WxPusher 官方项目。
@@ -42,7 +46,8 @@ npx skills add hunxuankai/wxpusher-integration --skill wxpusher-integration
 ```
 
 CLI 会从公开 GitHub 仓库发现 `skills/wxpusher-integration/`，并按选择的宿主安装。
-该命令跟随仓库当前内容；需要固定 v1.0.4 时，使用下方发行包。
+该命令读取远程仓库当前内容；本次本机维护的 1.0.5 尚未推送，远程仍为 1.0.4。
+需要固定 v1.0.4 时，使用下方发行包。
 
 ### 下载发行包
 
